@@ -5,42 +5,26 @@ import DetailShow from './DetailShow'
 
 import './Detail.css'
 
-let content = '';
-export default class Detail extends Component{
+export default class Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {content:''};
+  }
+  componentWillMount(){
+    let id = this.props.match.params.id;
+    axios.get(`https://zhihu-daily.leanapp.cn/api/v1/contents/${id}`)
+    .then(res => {
+      this.setState({content:res.data.CONTENTS})
+    })
+  }
 
-    render() {
-        let id = this.props.match.params.id;
-        console.log(id);
-        function get() {
-            axios.get(`https://zhihu-daily.leanapp.cn/api/v1/contents/${id}`)
-                .then( res => {
-                    console.log(res.data);
-                    // alert( typeof res.data.CONTENTS.body)
-                    content = res.data.CONTENTS;
-                    // content = res.data.CONTENTS.body;
-                    // console.log(content,2222);
-                })
-                .catch( () => {
-                    console.log("请求失败");
-                }
-            )
+  render() {
+    return (
+      <div className="detail">
+        {
+          <DetailShow data={this.state.content}/>
         }
-
-        get()
-
-        function show(content){
-            if(content != '') {
-                return <DetailShow data={content}/>
-            }
-        }
-
-        return (
-            <div className="detail">
-                {
-                    show(content)
-                    // MyComponent()
-                }
-            </div>
-        )
-    }
+      </div>
+    )
+  }
 }
