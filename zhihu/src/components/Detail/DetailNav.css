@@ -1,0 +1,25 @@
+
+.navBtn {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    height: .3rem;
+    background: #fff;
+    overflow: hidden;
+}
+.navBtn::after {
+    content: '';
+    display: block;
+    clear:both;
+}
+.navBtn li {
+    float: left;
+    width: 20%;
+    height: 100%;
+    line-height: .3rem;
+    text-align: center;
+}

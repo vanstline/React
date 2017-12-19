@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DetailShow from './DetailShow'
 
-import './Detail.css'
+import './Detail.css';
+import './DetailNav.css'
 
 export default class Detail extends Component {
+
   constructor(props) {
     super(props);
     this.state = {content:''};
+
+    this.back = this.back.bind(this)
   }
   componentWillMount(){
     let id = this.props.match.params.id;
@@ -18,12 +22,26 @@ export default class Detail extends Component {
     })
   }
 
+  back() {
+      this.props.history.goBack();
+  }
+
   render() {
     return (
       <div className="detail">
         {
           <DetailShow data={this.state.content}/>
         }
+        <ul className="navBtn">
+            <li
+                className='back'
+                onClick={this.back}
+                >返回</li>
+            <li>下一条</li>
+            <li>点赞</li>
+            <li>分享</li>
+            <li>评论</li>
+        </ul>
       </div>
     )
   }

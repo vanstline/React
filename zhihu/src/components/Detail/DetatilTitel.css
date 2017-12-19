@@ -1,6 +1,7 @@
 
 .DetailShow {
     position: relative;
+    padding-bottom: .3rem;;
 }
 .newsTilte {
     position: absolute;
@@ -44,4 +45,8 @@
     line-height: .26rem;
     color: #ccc;
     text-align: right;
+}
+
+.content-image {
+    height: 2rem;
 }
